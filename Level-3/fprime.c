@@ -1,40 +1,32 @@
-#include <stdio.h>
 #include <stdlib.h>
-
-int main(int ac, char **av)
+char    **ft_split(char *str)
 {
-    int inputDiv;
-    int input;
-    int div;
-    int isWrite;
-    int kal;
-
-    isWrite = 0;
-    div = 2;
-
-    if (ac == 2)
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    char **new;
+    new = (char **)malloc(256 * sizeof(char));
+    if(!new)
+        return(NULL);
+    while(str[i] && str[i] <= 32)
+        i++;
+    while(str[i])
     {
-        input = atoi(av[1]);
-        kal = input;
-        inputDiv = input / 2;
-        //input 12
-        // 12 % 2 = 
-        while (div <= inputDiv && input >= 1)
+        new[j] = (char *)malloc(sizeof(char) * 4096);
+        if(!new)
+            return(NULL);
+        k=0;
+        while(str[i] && str[i] > 32)
         {
-            while (input % div == 0)
-            {
-                input /= div;
-                if (isWrite != 0)
-                    printf("*");
-                isWrite = 1;
-                printf("%d", div);
-            }
-            div++;
+            new[j][k] = str[i];
+            i++;
+            k++;
         }
-        if (!isWrite && input >= 1)
-            printf("%d",kal);
+        new[j][k] = '\0';
+        j++;
+        while(str[i] && str[i] <= 32)
+            i++;
     }
-    
-     printf("\n");
-
+    new[j] =NULL;
+    return(new);
 }
