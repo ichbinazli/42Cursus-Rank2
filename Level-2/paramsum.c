@@ -1,25 +1,20 @@
 #include <unistd.h>
-#include <stdio.h>
 
-void    yazdir(char a)
+void ft_print(int number)
 {
-    write(1, &a, 1);
-}
-
-void     mal(int a)
-{
-    if (a <= 9)
-        yazdir(a + 48);
-    else 
-    {
-        mal(a / 10);
-        mal(a % 10);
-    }
+    if(number > 9)
+        ft_print(number / 10);
+    write(1, &"0123456789"[number % 10], 1);
 }
 
 int main(int ac, char **av)
 {
-    mal(ac -1);
+    (void)av;
+    if(ac > 1)
+    {
+        ft_print(ac -1);
+    }
+    else
+        write(1, "0", 1);
     write(1, "\n", 1);
-
 }
